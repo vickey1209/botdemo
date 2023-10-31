@@ -1,0 +1,4 @@
+export = Object.freeze({
+    ROUND_TIMER_START: "ROUND_TIMER_START",
+    TURN_PROCESS:"TURN_PROCESS"
+})
