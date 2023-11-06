@@ -6,7 +6,7 @@ async function botSignUp() {
     
     let botData = {
       playerName: "Bot",
-      sign: null,
+      sign: "X",
       isBot: true,
     }
     let fakeSocket = {

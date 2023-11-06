@@ -14,7 +14,7 @@ const signUpGame = async (signupData: any, socket: any) => {
         let userDefault: any = userFormat(signupData)
         await set(`${REDISKEYS.PLAYERS}:${userDefault._id}`, userDefault)
         let getUser = await get(`${REDISKEYS.PLAYERS}:${userDefault._id}`)
-
+        console.log("getuser=========>>>>", getUser);
         if (getUser) {
             socket.userId = getUser._id;
             let userData: any = {
@@ -25,6 +25,8 @@ const signUpGame = async (signupData: any, socket: any) => {
             }
             Events.SendToSocket(socket.id, userData)
         }
+        console.log("getuser=========>", );
+        
         let gettableQueue: any = await get(REDISKEYS.QUEUE)
         console.log('gettableQueue ', gettableQueue)
         if (gettableQueue && gettableQueue.tableIds && gettableQueue.tableIds.length > 0) {
@@ -40,7 +42,7 @@ const signUpGame = async (signupData: any, socket: any) => {
            
                 let firstPlayer = Math.floor(Math.random() * (1 - 0 + 1)) + 0;
                 bull.addJob.delayTimer({
-                    time: 1000,
+                    time: 5000,
                     jobId: table._id,
                     tableId: table._id,
                     currentturn: firstPlayer,
@@ -108,4 +110,4 @@ const signUpGame = async (signupData: any, socket: any) => {
     }
 }
 
-export { signUpGame }
+export { signUpGame }   
